@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="todo.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="title">
+        <h1>To Do List</h1>
+        <input type="date" id="select_day" name="select_day" value="2024-06-25" min="2024-01-01" max="2024-12-31"> 
+    </div>
+
+
+    <!-- 1. day 부분 -->
+    <div class="day">
+        <!-- 일자 자동 작성  -->
+        <div class="date">
+            <span>Date</span>
+            <span id="month"></span>
+            <span> / </span>
+            <span id="dayofmonth"></span>
+        </div>
+
+        <!-- 요일 설정 -->
+        <div class="week">
+
+        </div>
+    </div>
+
+    <!-- 2. todo리스트 만들기(7개) -->
+    <div class="todo">
+        <!-- 이 안의 아이디는 0~7(일~토)까지 -->
+
+        <div class="button">
+            <button type="button" id="add">추가</button>
+            <button type="button" id="delete">삭제</button>
+        </div>
+    </div>
+    
+    
+    <script src="todo.js"></script>
+</body>
+
+</html>
