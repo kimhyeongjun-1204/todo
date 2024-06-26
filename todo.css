@@ -6,6 +6,7 @@
 }
 
 body {
+    height: 100%; 
     display: flex; 
     flex-direction: column;
     align-items: center;
@@ -17,33 +18,49 @@ body > * {
 }
 
 
+
 /* 1. TO DO LIST */
-h1 {
-    font-size: 70px;
+.title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
 }
 
+h1 {
+    font-size: 60px;
+}
+
+#select_day {
+    height: 30%;
+    position: relative;
+    left: 130px;
+    font-size: 16px;
+    padding: 5px;
+}
 
 
 /* 2.일자 및 요일  */
 .day {
-    font-size: 50px; 
+    width: 90%;
+    font-size: 40px; 
     font-family: 'Courier New', Courier, monospace;
     display: flex;
-    justify-content: center;
 }
 
 /* 2-(1). DATE(일자)   */
 .date {
     /* 밑줄 설정  */
+    position: relative;
+    left: 10%;
     border-bottom: 1px solid black;
-    position: relative; 
-    right: 200px;
 }
 
 /* 2-(2). 요일 표시 css : S M T W T F S */
 .week {
-    position: relative;
-    left: 400px;
+    position: absolute;
+    right: 10%;
 }
 
 [id^=week] {
@@ -54,13 +71,20 @@ h1 {
 
 /* 3. 할일 리스트 적는 그룹( 원, 밑줄, 체크박스) */
 .todo {
+    width: 90%;
+    position:relative;
 }
 
 [id^=todo] {
     border-bottom: 2px solid black;
     display: flex;
     align-items: center;
-    margin-bottom: 18px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+#todo4, #todo5, #todo6 {
+    display: none; 
 }
 
 .todo > * > * {
@@ -69,8 +93,8 @@ h1 {
 
 /* (1) 원 */
 .circle {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     background-color: blue;
     border-radius: 50%;
 }
@@ -80,14 +104,26 @@ h1 {
     border: none; 
     font-family: 'Ownglyph_ryuttung-Rg';
     font-size: 30px;
-    width: 100rem;
+    width: 1500px;
     height: 3rem;
 }
 
 [id^=checkbox] {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
 }
+
+/* 추가, 삭제 버튼 */
+.button {
+    position: absolute;
+    right: -15px;
+    bottom: -30px;
+}
+
+.button > * {
+    font-size:25px;
+}
+
 
 
 
