@@ -5,8 +5,8 @@ window.onload = function () {
     for (var i in weekArr) {
         var span = document.createElement("span");
         span.id = "week" + i;
-        span.textContent = weekArr[i] + " ";
-
+        span.textContent = weekArr[i];
+        span.style.textAlign = "right";
         container.appendChild(span);
     }
 
@@ -16,6 +16,7 @@ window.onload = function () {
     for (var i = 0; i < 7; i++) {
         var color = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
         var checkNum = ['one', 'two', 'three', 'four', 'five', 'six', 'seven'];
+        var order = ['첫','두','세','네','다섯','여섯','일곱']; 
 
         var todo = document.createElement("div");
         todo.id = "todo" + i;
@@ -28,19 +29,20 @@ window.onload = function () {
         //2. 작성 리스트 생성
         var input = document.createElement("input");
         input.id = "list" + i;
+        input.className = "list";
         input.type = "text";
         input.style.display = "inline-block";
-
+        input.placeholder = order[i] + "번째 할일을 입력하세요."; 
 
         //3. 사각형(체크 리스트 생성)
         var checkbox = document.createElement("input");
 
         checkbox.id = "checkbox" + i;
+        checkbox.className = "checkbox";
         checkbox.type = "checkbox"
         checkbox.name = "checkbox"
         checkbox.style.accentColor = color[i];
         checkbox.value = checkNum[i];
-
 
         todo.appendChild(circle);
         todo.appendChild(input);
@@ -60,10 +62,29 @@ window.onload = function () {
     dayofmonth.textContent = dateTransfer.getDate();
 
 
+/* 체크 여부에 따라 사용자 입력 값(id = todo + i)에 줄 긋기  */
+var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+var textTags = document.querySelectorAll('input[type="text"]');
+
+checkboxes.forEach((checkbox, idx) => {
+    checkbox.addEventListener('change', function(event) {
+        if (event.target.checked) {
+            textTags[idx].style.textDecoration='line-through';
+        } else {
+            textTags[idx].style.textDecoration='none';
+        }
+    });
+});
+
+
+
+
 
 }
 
-// 행 추가*삭제 
+/* ----------2. 이벤트 추가 코드 -------------- */
+
+/* 행 추가*삭제  */
 var index = 4; /* 추가될 인덱스 */
 
 var btnAdd = document.querySelector("#add");
@@ -96,11 +117,27 @@ function deleteTodo() {
 function dayChange() {
     var selectValue = select.value;
     var selectDay = new Date(selectValue);
+    var day = selectDay.getDay(); /* 요일 표시 */
 
+    // 일자 변경 
     month.textContent = selectDay.getMonth() + 1;
     dayofmonth.textContent = selectDay.getDate();
+
+    // 요일부분에 동그라미 이미지 넣기 
+    for (var i = 0; i < 7; i++) {
+        var getDayTagAll = document.querySelector("#week" + i);
+        getDayTagAll.style.border = "none";
+        getDayTagAll.style.backgroundImage = "none";
+    }
+    var getDayTag = document.querySelector("#week" + day);
+    getDayTag.style.backgroundImage = "url('/dayselect.png')";
+    getDayTag.style.backgroundSize = "cover";
+    getDayTag.style.opacity = "0.7";
 }
+
+
 
 btnAdd.addEventListener('click', addTodo);
 btnDelete.addEventListener('click', deleteTodo);
-select.addEventListener('change', dayChange);
+select.addEventListener('click', dayChange);
+
